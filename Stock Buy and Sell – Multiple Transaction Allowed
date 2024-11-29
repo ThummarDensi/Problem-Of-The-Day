@@ -1,0 +1,19 @@
+class Solution {
+    maximumProfit(prices) {
+        let maxProfit = 0;
+
+        for (let i = 1; i < prices.length; i++) {
+            // If the price on the next day is greater, add the profit
+            if (prices[i] > prices[i - 1]) {
+                maxProfit += prices[i] - prices[i - 1];
+            }
+        }
+
+        return maxProfit;
+    }
+}
+
+// Example usage:
+const solution = new Solution();
+const prices = [100, 180, 260, 310, 40, 535, 695];
+console.log(solution.maximumProfit(prices)); // Output: 865
