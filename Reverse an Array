@@ -1,30 +1,15 @@
 class Solution {
     // Function to reverse the array.
     reverseArray(arr) {
-        // Reverse the array using the built-in reverse method.
-        return arr.reverse();
-    }
-}
-
-// Example usage:
-const solution = new Solution();
-
-const arr = [1, 4, 3, 2, 6, 5];
-const reversedArr = solution.reverseArray(arr);
-console.log(reversedArr); // Output: [5, 6, 2, 3, 4, 1]
-
-
-// ✅ This approach swaps elements from the beginning and the end of the array, working toward the center.
-
-class Solution2 {
-    // Function to reverse the array.
-    reverseArray2(arr) {
-        const n = arr.length;
-        for (let i = 0; i < Math.floor(n / 2); i++) {
-            // Swap elements from both ends.
-            [arr[i], arr[n - i - 1]] = [arr[n - i - 1], arr[i]];
-        }
-        return arr;
+        // your code here
+        let n = arr.length;
+        let temp = new Array(n);
+        
+        for (let i = 0; i < n; i++)
+            temp[i] = arr[n - i - 1];
+  
+        for (let i = 0; i < n; i++)
+            arr[i] = temp[i];
     }
 }
 
