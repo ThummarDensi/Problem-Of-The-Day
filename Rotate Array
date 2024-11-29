@@ -1,21 +1,14 @@
 class Solution {
-    // Function to rotate the array to the left by d steps
-    rotateArray(arr, d) {
+    // Function to rotate an array by d elements in counter-clockwise direction.
+    rotateArr(arr, d) {
         const n = arr.length;
-        console.log(n);
-        
-        // Ensure d is within bounds of the array length
         d = d % n;
-        console.log(d);
-        
-
-        // Reverse the three segments of the array
-        this.reverse(arr, 0, d - 1);   // Reverse the first d elements
-        this.reverse(arr, d, n - 1);  // Reverse the remaining elements
-        this.reverse(arr, 0, n - 1);  // Reverse the entire array
+ 
+        this.reverse(arr, 0, d - 1);   
+        this.reverse(arr, d, n - 1); 
+        this.reverse(arr, 0, n - 1);  
     }
 
-    // Helper function to reverse a segment of the array
     reverse(arr, start, end) {
         while (start < end) {
             [arr[start], arr[end]] = [arr[end], arr[start]];
@@ -24,7 +17,6 @@ class Solution {
         }
     }
 }
-
 // Example usage
 const solution = new Solution();
 const arr = [1, 2, 3, 4, 5];
