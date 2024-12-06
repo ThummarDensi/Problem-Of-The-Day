@@ -1,0 +1,25 @@
+class Solution {
+    // Function to find hIndex
+    hIndex(citations) {
+        // code here
+        citations.sort((a, b) => b - a);
+
+        let hIndex = 0;
+
+        // Find the maximum H-index
+        for (let i = 0; i < citations.length; i++) {
+            if (citations[i] >= i + 1) {
+                hIndex = i + 1;
+            } else {
+                break;
+            }
+        }
+
+        return hIndex;
+    }
+}
+
+// Example usage
+const solution = new Solution();
+const citations = [3, 0, 5, 3, 0];
+console.log(solution.hIndex(citations)); // Output: 3
