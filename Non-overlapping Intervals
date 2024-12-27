@@ -1,0 +1,19 @@
+class Solution {
+    // Function to find the minimum number of removals required.
+    minRemoval(intervals) {
+        // Sort intervals based on their end times
+        intervals.sort((a, b) => a[1] - b[1]);
+
+        let prev_end = -Infinity; 
+        let removals = 0;
+        for (let [start, end] of intervals) {
+            if (start < prev_end) {
+                removals++;
+            } else {
+                prev_end = end;
+            }
+        }
+
+        return removals;
+    }
+}
