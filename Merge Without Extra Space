@@ -1,1 +1,37 @@
+class Solution {
+    mergeArrays(a, b) {
+        let result = [];
+        let i = 0, j = 0;
 
+        // Merge the two arrays
+        while (i < a.length && j < b.length) {
+            if (a[i] < b[j]) {
+                result.push(a[i]);
+                i++;
+            } else {
+                result.push(b[j]);
+                j++;
+            }
+        }
+
+        // Add remaining elements from array `a`
+        while (i < a.length) {
+            result.push(a[i]);
+            i++;
+        }
+
+        // Add remaining elements from array `b`
+        while (j < b.length) {
+            result.push(b[j]);
+            j++;
+        }
+
+        return result;
+    }
+}
+
+// Example usage:
+let sol = new Solution();
+let a = [2, 3];
+let b = [0, 1];
+console.log(sol.mergeArrays(a, b)); // Output: [0, 1, 2, 3]
