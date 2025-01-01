@@ -1,0 +1,32 @@
+class Solution {
+    // Function to find the minimum element in a sorted and rotated array.
+    findMin(arr) {
+        let low = 0;
+        let high = arr.length - 1;
+        if (arr[low] <= arr[high]) {
+            return arr[low];
+        }
+        while (low <= high) {
+            let mid = Math.floor((low + high) / 2);
+            if (mid > 0 && arr[mid] < arr[mid - 1]) {
+                return arr[mid];
+            }
+            if (mid < arr.length - 1 && arr[mid] > arr[mid + 1]) {
+                return arr[mid + 1];
+            }
+            if (arr[mid] >= arr[low]) {
+                low = mid + 1;
+            } else {
+                high = mid - 1;
+            }
+        }
+
+        return -1; 
+    }
+}
+
+// Example usage:
+const solution = new Solution();
+console.log(solution.findMin([5, 6, 1, 2, 3, 4])); // Output: 1
+console.log(solution.findMin([3, 1, 2]));          // Output: 1
+console.log(solution.findMin([4, 2, 3]));          // Output: 2
