@@ -1,0 +1,31 @@
+class Solution {
+    kthElement(a, b, k) {
+        //code here 
+        if (a.length > b.length) {
+            [a, b] = [b, a];
+        }
+
+        let m = a.length, n = b.length;
+        let low = Math.max(0, k - n), high = Math.min(k, m);
+
+        while (low <= high) {
+            let cutA = Math.floor((low + high) / 2);
+            let cutB = k - cutA;
+
+            let aLeft = cutA === 0 ? -Infinity : a[cutA - 1];
+            let aRight = cutA === m ? Infinity : a[cutA];
+            let bLeft = cutB === 0 ? -Infinity : b[cutB - 1];
+            let bRight = cutB === n ? Infinity : b[cutB];
+
+            if (aLeft <= bRight && bLeft <= aRight) {
+                return Math.max(aLeft, bLeft);
+            } else if (aLeft > bRight) {
+                high = cutA - 1;
+            } else {
+                low = cutA + 1;
+            }
+        }
+
+        return -1; 
+    }
+}
