@@ -1,0 +1,36 @@
+class Solution {
+    // Function to return a list of integers denoting spiral traversal of matrix.
+    spirallyTraverse(mat) {
+        // code here
+        const result = [];
+        if(!mat.length || !mat[0].length)
+            return result;
+        
+        let top = 0, bottom = mat.length-1, left=0, right=mat[0].length-1;
+        while (top<=bottom && left<=right){
+            for(let i = left; i <=right; i++){
+                result.push(mat[top][i]);
+            }
+            top++;
+            
+            for(let i = top; i<=bottom; i++){
+                result.push(mat[i][right]);
+            }
+            right--;
+            
+            if(top<=bottom){
+                for(let i = right; i>=left; i--){
+                    result.push(mat[bottom][i]);
+                }
+                bottom--;
+            }
+            if(left<=right){
+                for(let i = bottom; i>=top; i--){
+                    result.push(mat[i][left]);
+                }
+                left++;
+            }
+        }
+        return result;
+    }
+}
