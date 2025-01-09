@@ -1,0 +1,17 @@
+class Solution {
+    countSubarrays(arr, k) {
+        // code here
+        let prefix_sum = 0;
+        let count = 0;
+        const prefix_count = new Map();
+        prefix_count.set(0,1);
+        for(let num of arr){
+            prefix_sum += num;
+            if(prefix_count.has(prefix_sum - k)){
+                count += prefix_count.get(prefix_sum - k);
+            }
+            prefix_count.set(prefix_sum, (prefix_count.get(prefix_sum) || 0) +1);
+        }
+        return count;
+    }
+}
