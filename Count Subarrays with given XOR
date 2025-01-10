@@ -1,0 +1,33 @@
+class Solution {
+    subarrayXor(arr, k) {
+        let count = 0; // To store the count of subarrays with XOR == k
+        let currXor = 0; // To store the prefix XOR
+        const freq = new Map(); // Hash map to store the frequency of XOR values
+
+        for (let num of arr) {
+            currXor ^= num; // Update the current prefix XOR
+
+            // If the current XOR is equal to k, it means a subarray from the start has XOR == k
+            if (currXor === k) {
+                count++;
+            }
+
+            // Check if there exists a prefix XOR such that currXor ^ prefixXor = k
+            const targetXor = currXor ^ k;
+            if (freq.has(targetXor)) {
+                count += freq.get(targetXor);
+            }
+
+            // Update the frequency of the current XOR in the map
+            freq.set(currXor, (freq.get(currXor) || 0) + 1);
+        }
+
+        return count;
+    }
+}
+
+// Example usage:
+const solution = new Solution();
+console.log(solution.subarrayXor([4, 2, 2, 6, 4], 6)); // Output: 4
+console.log(solution.subarrayXor([5, 6, 7, 8, 9], 5)); // Output: 2
+console.log(solution.subarrayXor([1, 1, 1, 1], 0));    // Output: 4
